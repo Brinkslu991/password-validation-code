@@ -22,6 +22,20 @@ def check_last_three(password):
     else:
         return'The last three characters must be numbers only.'
     
-print(check_length(password))
-print(check_first_five(password))
-print(check_last_three(password))
+def check_for_letter(password):
+    for char in password:
+        if char.isalpha():
+            return 
+        return 'There must be at least one letter in your password.'
+    
+def check_no_special_characters(password):
+    for char in password:
+        if char not in 'abcdefghijklmnopqrstuvwxyz1234567890':
+            return
+        return 'There cannot contain special characters or symbols.'
+    
+def check_for_number(password):
+    for char in password:
+        if char.isdigit():
+            return
+        return 'The password must contain at least one number'
