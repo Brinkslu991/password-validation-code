@@ -2,7 +2,7 @@
 # 12/16/24
 # Password Validation Code
 
-password = input('Please enter your password: ')
+
 
 def check_length(password):
     if len(password) < 8:
@@ -26,16 +26,32 @@ def check_for_letter(password):
     for char in password:
         if char.isalpha():
             return 
-        return 'There must be at least one letter in your password.'
+    return 'There must be at least one letter in your password.'
     
 def check_no_special_characters(password):
     for char in password:
-        if char not in 'abcdefghijklmnopqrstuvwxyz1234567890':
-            return
-        return 'There cannot contain special characters or symbols.'
-    
+        if not char.isalnum():
+            return 'There can not be any special characters.'
+        
 def check_for_number(password):
     for char in password:
         if char.isdigit():
-            return
-        return 'The password must contain at least one number'
+            return None
+    return 'The password must contain at least one number'
+    
+def main():
+    password = input('Please enter your password: ')
+    errors = []
+    checks = [check_length(password),check_first_five(password),check_last_three(password),check_for_letter(password),check_no_special_characters(password),check_for_number(password)]
+    for result in checks:
+        if result is not None:
+            errors.append(result)
+        
+    if errors:
+        for error in errors:
+            print(error)
+    else:
+        print(f'Your password is: {password}')
+
+if __name__ == '__main__':
+    main()
